@@ -16,8 +16,8 @@ class TemporalFlexCircuit:
 
     The class keeps a list of single-bit classical registers created when
     measuring qubits so each measurement result is stored in its own
-    ClassicalRegister(1). This makes it easy to set c_if conditions on
-    later gates.
+    ClassicalRegister(1). This makes it easy to apply conditional gates based
+    on measurement outcomes.
     """
 
     def __init__(self, n_qubits: int):
@@ -113,7 +113,7 @@ class TemporalFlexCircuit:
         """
         # Use AerSimulator for modern Qiskit Aer provider
         backend = AerSimulator()
-        # Use modern Qiskit API: transpile and run directly on backend
+        # Run circuit directly on backend (Qiskit 2.x API)
         job = backend.run(self.qc, shots=shots)
         result = job.result()
         # return counts dict for convenience
